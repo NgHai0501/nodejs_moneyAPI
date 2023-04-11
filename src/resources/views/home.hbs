@@ -1,0 +1,76 @@
+<div class="mt-4">
+    <h3>COIN</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Quoc gia</th>
+                <th scope="col">Ten</th>
+                <th scope="col co">Ki tu</th>
+                <th scope="col co">Ti gia qui doi</th>
+                <th scope="col co"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each coins}}
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.national}}</td>
+                <td>{{this.name}}</td>
+                <td>{{this.sign}}</td>
+                <td>{{this.exchange_rate}}</td>
+                <td>
+                    <a href="/coin/{{this._id}}/update" class="btn btn-link">Sua</a>
+                    <a href="" class="btn btn-link" data-toggle="modal" data-target="#confirm_delete" data-id="{{this._id}}">Xoa</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+
+{{!-- confirm xoa --}}
+<div class="modal fade" id="confirm_delete" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Do you want to delete it</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huy</button>
+        <button id="btn_delete" type="button" class="btn btn-primary">Xoa bo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+ {{!-- delete form --}}
+
+ <form name="delete_form" method="post"></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        var coinID;
+        var deleteForm = document.forms['delete_form']
+        var btnDelete = document.getElementById('btn_delete');
+
+        $('#confirm_delete').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            coinID = button.data('id')
+        })
+
+        btnDelete.onclick = function() {
+            deleteForm.action = '/coin/' + coinID + '?_method=DELETE'
+            deleteForm.submit()
+        }
+    })
+</script>

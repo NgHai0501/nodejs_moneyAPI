@@ -1,0 +1,23 @@
+<div class="mt-4">
+    <h3>Cap nhat coin</h3>
+
+    <form method="post" action="/coin/{{coin._id}}?_method=PUT">
+    <div class="form-group">
+        <label for="national">quoc gia</label>
+        <input type="text" class="form-control" value="{{coin.national}}" id="national" name="national">
+    </div>
+    <div class="form-group">
+        <label for="name">name</label>
+        <input type="text" class="form-control" value="{{coin.name}}" id="name" name="name">
+    </div>
+    <div class="form-group">
+        <label for="sign">nhap sign</label>
+        <input type="text" class="form-control" value="{{coin.sign}}" id="sign" name="sign">
+    </div>
+    <div class="form-group">
+        <label for="exchange_rate">exchange_rate</label>
+        <input type="text" class="form-control" value="{{coin.exchange_rate}}" id="exchange_rate" name="exchange_rate">
+    </div>
+    <button type="submit" class="btn btn-primary"> Cap nhat </button>
+    </form>
+</div>
